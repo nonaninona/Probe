@@ -10,10 +10,10 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element ={ <div> 메인페이지 </div> }/>
-      <Route path="/chat" element ={ <div> 챗 </div> }/>
-      <Route path="/article" element ={ <div> 아티클 </div> }/>
-      <Route path="/map" element ={ <div> 지도 </div> }/>
+      <Route path="/" element ={ <HomePage></HomePage> }/>
+      <Route path="/chat" element ={ <ChatPage></ChatPage> }/>
+      <Route path="/article" element ={ <ArticlePage></ArticlePage> }/>
+      <Route path="/map" element ={ <MapPage></MapPage> }/>
     </Routes>
   )
 }
