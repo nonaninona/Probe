@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 export default function NavBar() {
     return (
         <div className={styles['nav-bar']}>
-            <img className={styles['logo']} src={logo} />
+            <img className={styles['logo']} src={logo} alt='로고'/>
             <div className={styles['nav-list']}>
                 <div className={styles['page-item']}>
                     <ul>
