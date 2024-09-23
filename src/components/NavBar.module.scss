@@ -1,0 +1,41 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 25px 70px;
+    background-color: white;
+    color: black;
+}
+
+.logo {
+    width: 160px;
+    height: 60px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .page-item {
+        margin-right: 83px;
+        li {
+            float: left;
+            margin-left: 100px;
+        }
+    }
+
+    .login-item {
+        display: flex;
+        flex-direction: row;
+        padding: 14px 18px;
+        border: 1px solid #D6D6D6;
+
+        .separator {
+            margin: 0 8px;
+            color: #D6D6D6;;
+        }
+    }
+}
