@@ -3,21 +3,23 @@
     flex-direction: column;
     align-items: center;
     background-color: #FAFAFA;
+    padding: 100px 128px;
 }
 
 .title {
     width: 100%;
     color: #2F52CB;
     text-align: left;
-    font-size: 52px;
+    font-size: 42px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -2.6px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .list-wrapper {
+    width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
