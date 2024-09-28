@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LastChatBox from '../../components/ChatRoom/LastChatBox';
+import LastChatList from '../../components/ChatRoom/LastChatList';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 const dummyItems = [
@@ -31,13 +31,27 @@ const dummyItems = [
 
 describe('LastChatList render', () => {
     it('제목이 잘 그려지는가?', () => {
-        render(<LastChatList items={dummyItems}/>);
+        render(
+            <MemoryRouter initialEntries={['/chatlist']}>
+                <Routes>
+                    <Route path='/chatlist' element={<LastChatList items={dummyItems}/>}/>
+                    <Route path='/chatroom' element={<div>채팅방</div>}/>
+                </Routes>
+            </MemoryRouter>
+        );
         const title = screen.getByText('test title 1');
         expect(title).toBeInTheDocument();
     })
 
     it('날짜가 잘 그려지는가?', () => {
-        render(<LastChatList items={dummyItems}/>);
+        render(
+            <MemoryRouter initialEntries={['/chatlist']}>
+                <Routes>
+                    <Route path='/chatlist' element={<LastChatList items={dummyItems}/>}/>
+                    <Route path='/chatroom' element={<div>채팅방</div>}/>
+                </Routes>
+            </MemoryRouter>
+        );
         const title = screen.getByText('1 days ago');
         expect(title).toBeInTheDocument();
     })
@@ -56,12 +70,10 @@ describe('LastChatList 기능', () => {
 
         // 채팅방 찾기
         const lastChatTitle = screen.getByText('test title 1');
-        const lastChatBox = lastChatTitle.closest('div')
-
+        
         // 이동하기
-        fireEvent.click(lastChatBox!);
+        fireEvent.click(lastChatTitle);
 
-        expect(lastChatBox).toBeInTheDocument();
         const chatRoomText = screen.getByText('채팅방');
         expect(chatRoomText).toBeInTheDocument();
     })
