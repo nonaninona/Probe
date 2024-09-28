@@ -1,5 +1,5 @@
-import styles from './MainPageUI1.module.scss';
-import mainPageUI from "../assets/MainPageUI2.png"
+import styles from './HomePageUI2.module.scss';
+import mainPageUI from "../../assets/HomePageUI2.png"
 
 export default function MainPageUI1() {
 
