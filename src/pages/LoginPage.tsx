@@ -30,7 +30,7 @@ export function LoginPage() {
     return ( 
         <div className={styles['login-page']}>
             <NavBar />
-            <div className={'login-form-wrapper'}>
+            <div className={styles['login-form-wrapper']}>
                 <LoginForm onLogin={handleLogin} errorMessage={errorMessage}/>
             </div>
         </div>
