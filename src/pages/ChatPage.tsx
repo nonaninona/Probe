@@ -38,7 +38,7 @@ export function ChatPage() {
     }
 
     const handleQuery = (query: string) => {
-        navigate("/chatroom")
+        navigate("/newchat")
         console.log(query);
         //새로운 채팅방 + 그 화면으로 이동 + 쿼리 던지고 받기
     }
