@@ -1,4 +1,4 @@
-export { HomePage } from './home/HomePage';
+export { HomePage } from './HomePage';
 export { ChatPage } from './chat/ChatPage';
 export { ArticlePage } from './article/ArticlePage';
 export { MapPage } from './map/MapPage';
