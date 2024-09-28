@@ -22,12 +22,14 @@
 
 .item-title {
     color: #404040;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -1.4px;
+    margin-bottom: 7px;
 }
+
 .item-input-field {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -36,21 +38,24 @@
     color: #000000;
     width: 475px;
     height: 64px;
-    font-size: 24px;
+    font-size: 20px;
     padding: 0px 10px;
 }
 .item-input-field:focus {
     outline: none;
     border: 1px solid #2F52CB;
     color: #000000;
-    font-size: 24px;
+    font-size: 20px;
 }
+
 .error-message {
     width:100%;
+    font-size: 18px;
     text-align: center;
     margin : 15px 0px;
     color: #CB2F32;
 }
+
 .login-button {
     width: 495px;
     height: 91px;
