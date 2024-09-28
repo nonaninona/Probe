@@ -1,7 +1,7 @@
 import styles from './HomePageUI2.module.scss';
 import mainPageUI from "../../assets/HomePageUI2.png"
 
-export default function MainPageUI1() {
+export default function HomePageUI1() {
 
     return (
         <div>
