@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm"
 import NavBar from "../components/NavBar"
 import { useState } from "react";
-import styles from './LoginPages.module.scss';
+import styles from './LoginPage.module.scss';
 
 export function LoginPage() {
     const navigate = useNavigate();
