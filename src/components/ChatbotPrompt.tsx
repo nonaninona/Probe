@@ -9,8 +9,7 @@ interface ChatbotPromptProps {
 export default function ChatbotPrompt({onQuery} : ChatbotPromptProps) {
     const [query, setQuery] = useState('');
 
-    const handleQuery = (e) => {
-        e.preventDefault();
+    const handleQuery = () => {
         onQuery!(query)
     }
 
