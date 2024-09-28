@@ -1,5 +1,7 @@
+import NavBar from "../../components/NavBar";
+
 export function HomePage() {
     return (
-        <div> 홈 </div>
+        <NavBar />
     )
 }
