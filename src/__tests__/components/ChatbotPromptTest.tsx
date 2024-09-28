@@ -5,7 +5,7 @@ import ChatbotPrompt from '../../components/ChatbotPrompt';
 describe('ChatbotPrompt render', () => {
     it('전송버튼이 잘 그려지는가?', () => {
         render(<ChatbotPrompt/>);
-        const button = screen.getByAltText('전송버튼');
+        const button = screen.getByRole('button');
         expect(button).toBeInTheDocument();
     })
     it('placeholder가 잘 그려지는가?', () => {
