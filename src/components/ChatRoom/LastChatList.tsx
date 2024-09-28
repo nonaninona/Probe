@@ -1,12 +1,19 @@
 import styles from './LastChatList.module.scss'
 import { LastChatBoxProps } from './LastChatBox'
 import LastChatBox from './LastChatBox'
+import { useNavigate } from 'react-router-dom';
 
 interface LastChatListProps {
     items: LastChatBoxProps[]
 }
 
 export default function LastChatList({ items }: LastChatListProps) {
+    const navigate = useNavigate();
+
+    const handleClick = (chatRoomId: number) => {
+        navigate('/chatroom')
+        console.log(chatRoomId)
+    }
 
     return (
         <div className={styles['last-chat-list']}>
@@ -18,7 +25,7 @@ export default function LastChatList({ items }: LastChatListProps) {
                             chatRoomId={item.chatRoomId}
                             title={item.title}
                             date={item.date}
-                            onClick={item.onClick}
+                            onClick={handleClick}
                         />
                     </div>
                 })}
