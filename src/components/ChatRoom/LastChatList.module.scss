@@ -1,0 +1,27 @@
+.last-chat-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    width: 100%;
+    color: #2F52CB;
+    text-align: left;
+    font-size: 52px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -2.6px;
+    margin-bottom: 60px;
+}
+
+.list-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.list-item {
+    margin: 12px;
+}

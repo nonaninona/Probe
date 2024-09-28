@@ -1,5 +1,5 @@
-import styles from '../components/LastChatBox.module.scss'
-import probeE from '../assets/ProbeE.png'
+import styles from './LastChatBox.module.scss'
+import probeE from '../../assets/ProbeE.png'
 
 export interface LastChatBoxProps {
     chatRoomId: number,
