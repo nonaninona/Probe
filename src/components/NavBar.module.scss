@@ -1,11 +1,14 @@
 .nav-bar {
+    width: 100%;
+    background-color: white;
+}
+
+.item-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 25px 70px;
-    background-color: white;
-    color: black;
 }
 
 .logo {
