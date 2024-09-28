@@ -1,20 +1,18 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NavBar from '../../components/LoginForm';
-import { HomePage } from '../../pages';
-import { BrowserRouter, createMemoryRouter, Route, Routes } from 'react-router-dom';
+import LoginForm from '../../components/LoginForm';
 
 describe('LoginForm render', () => {
     it('제목이 잘 그려지는가?', () => {
         render(
-            <LoginForm />
+            <LoginForm errorMessage='' />
         );
         const title = screen.getByTestId('로그인-제목');
         expect(title).toBeInTheDocument();
     })
     it('form item 제목이 잘 그려지는가?', () => {
         render(
-            <LoginForm />
+            <LoginForm errorMessage=''/>
         );
         const idTitle = screen.getByText('아이디');
         const passwordTitle = screen.getByText('비밀번호');
@@ -23,7 +21,7 @@ describe('LoginForm render', () => {
     })
     it('form input이 잘 그려지는가?', () => {
         render(
-            <LoginForm />
+            <LoginForm errorMessage=''/>
         );
         const idInput = screen.getByPlaceholderText('아이디를 입력해주세요');
         const passwordInput = screen.getByPlaceholderText('비밀번호를 입력해주세요');
@@ -32,7 +30,7 @@ describe('LoginForm render', () => {
     })
     it('로그인 버튼이 잘 그려지는가?', () => {
         render(
-            <LoginForm />
+            <LoginForm errorMessage=''/>
         );
         const loginBtn = screen.getByRole('button');
         expect(loginBtn).toBeInTheDocument();
