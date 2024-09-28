@@ -15,7 +15,7 @@ describe('HomePage 채팅 기능 테스트', () => {
                 </Routes>
             </MemoryRouter>
         );
-        const button = screen.getByAltText('전송버튼');
+        const button = screen.getByRole('button');
         const textForm = screen.getByPlaceholderText('프로비에게 부동산 물어보기 ex) 정비사업 종류에는 뭐가 있어?');
 
         //when
@@ -48,7 +48,7 @@ describe('HomePage 채팅 기능 테스트', () => {
                 </Routes>
             </MemoryRouter>
         );
-        const button = screen.getByAltText('전송버튼');
+        const button = screen.getByRole('button');
         const textForm = screen.getByPlaceholderText('프로비에게 부동산 물어보기 ex) 정비사업 종류에는 뭐가 있어?');
 
         //when
@@ -81,7 +81,7 @@ describe('HomePage 채팅 기능 테스트', () => {
                 </Routes>
             </MemoryRouter>
         );
-        const button = screen.getByAltText('전송버튼');
+        const button = screen.getByRole('button');
         const textForm = screen.getByPlaceholderText('프로비에게 부동산 물어보기 ex) 정비사업 종류에는 뭐가 있어?');
 
         //when
