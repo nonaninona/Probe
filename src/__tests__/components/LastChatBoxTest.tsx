@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LastChatBox from '../../components/LastChatBox';
+import LastChatBox from '../../components/ChatRoom/LastChatBox';
 
 describe('ChatbotPrompt render', () => {
     it('제목이 잘 그려지는가?', () => {
