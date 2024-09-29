@@ -1,13 +1,13 @@
 import styles from './ArticleItem.module.scss';
 
-interface ArticleItemProp {
+export interface ArticleItemProps {
     width: number,
     height: number,
     title: string,
     body: string
 }
 
-export default function ArticleItem(props : ArticleItemProp) {
+export default function ArticleItem(props : ArticleItemProps) {
     return (
         <div style={ {width : props.width, height : props.height}} className={styles['article-item']}>
             <div className={styles['content-wrapper']}>
