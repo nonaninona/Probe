@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { SignUpPage } from '../../pages/LoginPage';
+import { SignUpPage } from '../../pages/SignUpPage';
 
 describe('SignUpPage 회원가입 기능 테스트', () => {
     it('올바르지 않은 이름, 아이디, 비밀번호 입력 후 요청 시, 오류 메시지가 뜨는가?', () => {

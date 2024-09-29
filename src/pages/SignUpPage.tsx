@@ -20,8 +20,8 @@ export function SignUpPage() {
         return response
     }
 
-    const handleSignUp = ({name, id, password} : { name: string, id: string; password: string }) => {
-        const response = callSignUpAPI(name, id, password);
+    const handleSignUp = ({userName, id, password} : { userName: string, id: string; password: string }) => {
+        const response = callSignUpAPI(userName, id, password);
         if(response.ok) {
             setErrorMessage('')
             navigate('/')

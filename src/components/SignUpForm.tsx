@@ -12,7 +12,10 @@ export default function SignUpForm(props : SignUpFormProps) {
     const [password, setPassword] = useState('');
 
     const handleSignUp = () => {
-        props.onSignUp!!({userName, id, password})
+        props.onSignUp!({userName, id, password})
+        console.log(userName);
+        console.log(id);
+        console.log(password);
     }
 
     return (
