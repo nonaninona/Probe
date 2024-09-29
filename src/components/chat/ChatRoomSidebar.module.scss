@@ -1,0 +1,29 @@
+.chat-room-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 320px;
+    height: 100vh;
+    margin-top: 50px;
+    background-color: #FAFAFA;
+}
+
+.content-wrapper {
+    width: 200px;
+    height: 500px;
+}
+
+.recent-chat-title {
+    color: #2F52CB;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 60px;
+}
+
+.recent-chat-list {
+    width: 200px;
+    padding: 20px;
+}

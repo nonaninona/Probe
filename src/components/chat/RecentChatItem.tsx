@@ -1,7 +1,7 @@
 import styles from './RecentChatItem.module.scss'
 import chatIcon from '../../assets/chat-icon.svg';
 
-interface RecentChatItemProps {
+export interface RecentChatItemProps {
     chatRoomId: number,
     title: string,
     onClick?: Function
