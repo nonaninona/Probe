@@ -30,3 +30,24 @@ export async function callGetChatListAPI({chatRoomId}: {chatRoomId: number}) {
 
     return response.json();
 }
+
+export async function callMakeChatRoomAPI({username, title}: {username: string, title: string}) {
+    const request = {
+        "username" : username,
+        "title" : title
+    }
+    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/chat/createChatRoom', {
+        method : "GET",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(request)
+    })
+
+    if(response.ok) {
+        const errMsg = await response.json();
+        return new Error(errMsg || 'failed to fetch data')
+    }
+
+    return response.json();
+}
