@@ -92,7 +92,7 @@ describe('NavBar Link 테스트', () => {
         );
         const ChatPageLink = screen.getByText('챗봇');
         fireEvent.click(ChatPageLink);
-        const text = screen.getByAltText('프로비에게 질문하기');
+        const text = screen.getByText('프로비에게 질문하기');
         expect(text).toBeInTheDocument();
     })
     it('ArticlePage로 이동 시, 잘 로딩되는가?', () => {
@@ -140,7 +140,7 @@ describe('NavBar Link 테스트', () => {
         );
         const LoginLink = screen.getByText('로그인');
         fireEvent.click(LoginLink);
-        const div = screen.getByText("로그인")
+        const div = screen.getByText("아이디")
         expect(div).toBeInTheDocument();
     })
     // it('SignUpPage 이동 시, 잘 로딩되는가?', () => {
