@@ -69,10 +69,6 @@ export function ChatRoom({ id }: ChatRoomProps) {
         callGetChatListAPI({ chatRoomId })
     }, [])
 
-    // useEffect(() => {
-    //     call
-    // })
-
     const handleQuery = () => {
         //소켓으로 메시지 보내기
     }
