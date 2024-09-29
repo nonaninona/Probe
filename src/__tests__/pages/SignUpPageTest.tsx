@@ -44,6 +44,5 @@ describe('SignUpPage 회원가입 기능 테스트', () => {
 
         const pageName = screen.getByText('메인')
         expect(pageName).toBeInTheDocument();
-        
     })
 })
