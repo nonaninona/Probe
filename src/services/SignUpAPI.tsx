@@ -4,12 +4,7 @@ export async function callSignUpAPI({userName, id, password} : {userName: string
         "password" : password,
         "name" : userName
     }
-    console.log(userName)
-    console.log(id)
-    console.log(password)
-    console.log(import.meta.env.REACT_APP_SERVER_URL)
-    // console.log(process.env.REACT_APP_SERVER_URL)
-    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/signup', {
+    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/signUp', {
         method : "POST",
         headers : {
             "Content-Type" : "application/json"
