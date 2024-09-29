@@ -1,14 +1,17 @@
+import { useParams } from "react-router-dom"
 import ChatList from "../components/chat/ChatList"
 import ChatRoomSideBar from "../components/chat/ChatRoomSideBar"
 import ChatbotPrompt from "../components/ChatbotPrompt"
+import { callGetChatListAPI, callGetChatRoomListAPI } from "../services/ChatAPI"
 import styles from "./ChatRoom.module.scss"
-import { useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 
 interface ChatRoomProps {
-    userName: string
+    id: string
 }
 
-export function ChatRoom({ userName }: ChatRoomProps) {
+export function ChatRoom({ id }: ChatRoomProps) {
+    const chatRoomId = Number(useParams().chatRoomId);
     const [chatRooms, setChatRooms] = useState(
         [
             {
@@ -58,27 +61,31 @@ export function ChatRoom({ userName }: ChatRoomProps) {
         ]
     )
 
-    const callGetChatRoomsAPI = () => {
+    useEffect(() => {
+        callGetChatRoomListAPI({id})
+    }, [])
 
-    }
+    useEffect(() => {
+        callGetChatListAPI({ chatRoomId })
+    }, [])
 
-    const callGetChatsAPI = () => {
+    // useEffect(() => {
+    //     call
+    // })
 
-    }
-
-    const sendSocketMessageAPI = () => {
-
+    const handleQuery = () => {
+        //소켓으로 메시지 보내기
     }
 
     return (
         <div className={styles['chat-room']}>
-            <ChatRoomSideBar userName={userName} items={chatRooms} />
+            <ChatRoomSideBar userName={id} items={chatRooms} />
             <div className={styles['right-column']}>
                 <div className={styles['chat-list']}>
                 <ChatList items={chats} />
                 </div>
                 <div className={styles['prompt']}>
-                <ChatbotPrompt />
+                <ChatbotPrompt onQuery={handleQuery} />
                 </div>
             </div>
         </div>
