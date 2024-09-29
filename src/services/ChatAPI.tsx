@@ -17,3 +17,16 @@ export async function callGetChatRoomListAPI({id}: {id: string}) {
 
     return response.json();
 }
+
+export async function callGetChatListAPI({chatRoomId}: {chatRoomId: number}) {
+    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/chat/getAllChatsFromChatRoom/' + chatRoomId, {
+        method : "GET"
+    })
+
+    if(response.ok) {
+        const errMsg = await response.json();
+        return new Error(errMsg || 'failed to fetch data')
+    }
+
+    return response.json();
+}
