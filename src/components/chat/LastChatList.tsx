@@ -11,7 +11,7 @@ export default function LastChatList({ items }: LastChatListProps) {
     const navigate = useNavigate();
 
     const handleClick = (chatRoomId: number) => {
-        navigate('/chatroom')
+        navigate('/chatroom/' + chatRoomId)
         console.log(chatRoomId)
     }
 
