@@ -1,0 +1,30 @@
+.new-chat-button {
+    width:150px;
+    padding : 15px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: #2F52CB;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.add-image {
+    width: 25px;
+    height: 25px;
+    margin-right: 35px;
+}
+
+.button-content {
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
