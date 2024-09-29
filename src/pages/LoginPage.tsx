@@ -11,15 +11,9 @@ export function LoginPage() {
 
     const handleLogin = ({id, password} : { id: string; password: string }) => {
         const response = callLoginAPI({id, password});
-        response
-            .then((data) => {
-                console.log(data)
-                setErrorMessage('')
-                navigate('/')
-            })
-            .catch((err) => {
-                setErrorMessage('아이디 혹은 비밀번호가 올바르지 않습니다')
-            })
+        console.log(response);
+        response.then((data) => {console.log(data)})
+
     }
     return ( 
         <div className={styles['login-page']}>
