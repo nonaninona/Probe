@@ -10,12 +10,12 @@ export default function RecommendArticleList(props: RecommendArticleListProps) {
     const navigate = useNavigate();
 
 
-    const handleArticleItemClick = () => {
-        navigate('/articledetail')
+    const handleArticleItemClick = (articleId: number) => {
+        navigate('/article/'+articleId)
     }
 
     const handleMoreArticleClick = () => {
-        navigate('/articlelist')
+        navigate('/articles')
     }
 
 
