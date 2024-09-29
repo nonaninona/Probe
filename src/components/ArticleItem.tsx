@@ -1,15 +1,23 @@
 import styles from './ArticleItem.module.scss';
 
-interface ArticleItemProp {
+export interface ArticleItemProps {
+    articleId: number,
     width: number,
     height: number,
     title: string,
-    body: string
+    body: string,
+    onClick? : Function
 }
 
-export default function ArticleItem(props : ArticleItemProp) {
+export default function ArticleItem(props : ArticleItemProps) {
+    
+    const handleClick = () => {
+        console.log(props.articleId)
+        props.onClick!(props.articleId);
+    }
+    
     return (
-        <div style={ {width : props.width, height : props.height}} className={styles['article-item']}>
+        <div onClick={handleClick} style={ {width : props.width, height : props.height}} className={styles['article-item']}>
             <div className={styles['content-wrapper']}>
                 <div className={styles['title']}>
                     {props.title}

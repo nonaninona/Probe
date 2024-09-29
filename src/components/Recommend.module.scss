@@ -1,0 +1,48 @@
+.recommend-article-list {
+    display:flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+    width: 100%;
+    height: 800px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+}
+
+.title {
+    color: #2F52CB;
+    text-align: left;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -2.6px;
+    margin-bottom: 50px;
+}
+
+.article-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 500px;
+}
+
+.article-item {
+    margin : 10px;
+}
+
+.more-article-button {
+    text-align: end;
+    margin-top: 30px;
+    color: #575757;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -1.6px;
+}
