@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LoginForm from '../../components/login/LoginForm';
+import LoginForm from '../../../components/login/LoginForm';
 
 describe('LoginForm render', () => {
     it('제목이 잘 그려지는가?', () => {
