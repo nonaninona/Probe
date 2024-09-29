@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import styles from './ChatRoomSidebar.module.scss'
 import NewChatButton from './NewChatButton'
 import RecentChatItem, { RecentChatItemProps } from './RecentChatItem'
+import { callMakeChatRoomAPI } from '../../services/ChatAPI'
 
 export interface ChatRoomSideBarProps {
     userName: string,
@@ -16,7 +17,15 @@ export default function ChatRoomSideBar({ userName, items }: ChatRoomSideBarProp
     }
 
     const handleNewChatClick = () => {
-        
+        const response = callMakeChatRoomAPI({ username : userName, title : "test title"})
+        response    
+            .then((data) => {
+                console.log(data)
+                navigate('/chatroom/' + data.chatRoomId)
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
     }
 
     return (

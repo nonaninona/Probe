@@ -47,7 +47,7 @@ export async function callMakeChatRoomAPI({username, title}: {username: string, 
         "title" : title
     }
     const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/chat/createChatRoom', {
-        method : "GET",
+        method : "POST",
         headers : {
             "Content-Type" : "application/json",
             "Authorization" : JWT!
@@ -56,7 +56,7 @@ export async function callMakeChatRoomAPI({username, title}: {username: string, 
         body : JSON.stringify(request)
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
