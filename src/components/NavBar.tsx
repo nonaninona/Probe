@@ -36,7 +36,7 @@ export default function NavBar() {
                         <div className={styles['separator']}>
                             |
                         </div>
-                        <Link to='/login'>
+                        <Link to='/signup'>
                             회원가입
                         </Link>
                     </div>
