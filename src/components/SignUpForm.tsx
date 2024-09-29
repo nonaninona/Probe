@@ -2,7 +2,7 @@ import styles from './SignUpForm.module.scss';
 import { useState } from 'react';
 
 interface SignUpFormProps {
-    onLogin? : Function,
+    onSignUp? : Function,
     errorMessage: string
 }
 
@@ -12,11 +12,11 @@ export default function SignUpForm(props : SignUpFormProps) {
     const [password, setPassword] = useState('');
 
     const handleSignUp = () => {
-        props.onLogin!!({userName, id, password})
+        props.onSignUp!!({userName, id, password})
     }
 
     return (
-        <div className={styles['login-form']}>
+        <div className={styles['sign-up-form']}>
             <div className={styles['title']} data-testid='회원가입-제목'>회원가입</div>
             <div className={styles['item']}>
                 <div className={styles['item-title']}>이름</div>
@@ -37,7 +37,7 @@ export default function SignUpForm(props : SignUpFormProps) {
                 </div>
             </div>
             <div className={styles['error-message']}>{props.errorMessage}</div>
-            <button onClick={handleSignUp} className={styles['login-button']}>회원가입</button>
+            <button onClick={handleSignUp} className={styles['sign-up-button']}>회원가입</button>
         </div>
     )
 }

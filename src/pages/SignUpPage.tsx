@@ -20,7 +20,7 @@ export function SignUpPage() {
         return response
     }
 
-    const handleLogin = ({name, id, password} : { name: string, id: string; password: string }) => {
+    const handleSignUp = ({name, id, password} : { name: string, id: string; password: string }) => {
         const response = callSignUpAPI(name, id, password);
         if(response.ok) {
             setErrorMessage('')
@@ -29,10 +29,10 @@ export function SignUpPage() {
         setErrorMessage('이름, 아이디 혹은 비밀번호가 올바르지 않습니다')
     }
     return ( 
-        <div className={styles['login-page']}>
+        <div className={styles['sign-up-page']}>
             <NavBar />
-            <div className={styles['login-form-wrapper']}>
-                <SignUpForm onLogin={handleLogin} errorMessage={errorMessage}/>
+            <div className={styles['sign-up-form-wrapper']}>
+                <SignUpForm onSignUp={handleSignUp} errorMessage={errorMessage}/>
             </div>
         </div>
     )
