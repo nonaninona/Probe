@@ -11,7 +11,7 @@ export async function callLoginAPI({id, password} : {id: string, password: strin
         body : JSON.stringify(request)
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
