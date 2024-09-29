@@ -6,7 +6,9 @@ export default function NavBar() {
     return (
         <div className={styles['nav-bar']}>
             <div className={styles['item-container']}>
+                <Link to='/'>
                 <img className={styles['logo']} src={logo} alt='로고'/>
+                </Link>
                 <div className={styles['nav-list']}>
                     <div className={styles['page-item']}>
                         <ul>
