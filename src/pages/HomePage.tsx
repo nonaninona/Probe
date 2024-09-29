@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import ChatbotPrompt from "../components/ChatbotPrompt";
 import Footer from "../components/Footer";
-import HomePageUI0 from "../components/HomePage/HomePageUI0";
-import HomePageUI1 from "../components/HomePage/HomePageUI1";
-import MainPageUI2 from "../components/HomePage/HomePageUI2";
+import HomePageUI0 from "../components/homePage/HomePageUI0";
+import HomePageUI1 from "../components/homePage/HomePageUI1";
+import MainPageUI2 from "../components/homePage/HomePageUI2";
 import NavBar from "../components/NavBar";
 import styles from "./HomePage.module.scss"
 

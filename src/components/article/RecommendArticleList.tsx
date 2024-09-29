@@ -1,4 +1,4 @@
-import styles from './Recommend.module.scss';
+import styles from './RecommendArticleList.module.scss';
 import ArticleItem, { ArticleItemProps } from './ArticleItem';
 import { useNavigate } from 'react-router-dom';
 

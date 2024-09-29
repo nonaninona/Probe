@@ -1,5 +1,5 @@
 import NavBar from '../components/NavBar';
-import RecommendArticleList from '../components/RecommendArticleList';
+import RecommendArticleList from '../components/article/RecommendArticleList';
 import styles from './ArticlePage.module.scss';
 
 export function ArticlePage() {

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar"
 import { useState } from "react";
 import styles from './SignUpPage.module.scss';
-import SignUpForm from "../components/SignUpForm";
+import SignUpForm from "../components/login/SignUpForm";
 import { callSignUpAPI } from "../services/SignUpAPI";
 
 export function SignUpPage() {
