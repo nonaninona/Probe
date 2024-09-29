@@ -10,9 +10,8 @@ export default function LoginForm(props : LoginFromProps) {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        props.onLogin!!({id, password})
+    const handleLogin = () => {
+        props.onLogin!({id, password})
     }
 
     return (
