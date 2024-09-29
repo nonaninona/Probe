@@ -9,17 +9,21 @@ export function LoginPage() {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleLogin = ({id, password} : { id: string; password: string }) => {
-        const response = callLoginAPI({id, password});
-        console.log(response);
-        response.then((data) => {console.log(data)})
-
+    const handleLogin = ({ id, password }: { id: string; password: string }) => {
+        const response = callLoginAPI({ id, password });
+        response
+            .then((data) => { 
+                localStorage.setItem("JWT", data.jwt) 
+                console.log(localStorage.getItem("JWT"))
+            })
+            .catch((err) => { console.log(err.message) })
     }
-    return ( 
+
+    return (
         <div className={styles['login-page']}>
             <NavBar />
             <div className={styles['login-form-wrapper']}>
-                <LoginForm onLogin={handleLogin} errorMessage={errorMessage}/>
+                <LoginForm onLogin={handleLogin} errorMessage={errorMessage} />
             </div>
         </div>
     )

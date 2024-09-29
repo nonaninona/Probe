@@ -11,16 +11,10 @@ export async function callLoginAPI({id, password} : {id: string, password: strin
         body : JSON.stringify(request)
     })
 
-    for (let [key, value] of response.headers) {
-        console.log(`${key} = ${value}`);
-      }
-
-    console.log(response.headers.get('Authorization'))
-
     if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
 
-    return response.headers.get('Authorization');
+    return response.json();
 }
