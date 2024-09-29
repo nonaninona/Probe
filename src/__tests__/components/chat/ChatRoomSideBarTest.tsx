@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import ChatRoomSideBar from '../../../components/chat/ChatRoomSideBar';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 const recentChatItems = [
     {
@@ -22,12 +24,24 @@ const recentChatItems = [
 
 describe('ChatRoomSideBar render', () => {
     it('버튼이 잘 그려지는가?', () => {
-        render(<ChatRoomSideBar userName={'testName'} items={recentChatItems}/>);
+        render(
+            <MemoryRouter initialEntries={['/chatroom/0']}>
+                <Routes>
+                    <Route path='/chatroom/:id' element={<ChatRoomSideBar userName={'testName'} items={recentChatItems}/>}/>
+                </Routes>
+            </MemoryRouter>
+        );
         const btn = screen.getByText('새 채팅');
         expect(btn).toBeInTheDocument();
     })
     it('최근 대화가 잘 그려지는가?', () => {
-        render(<ChatRoomSideBar userName={'testName'} items={recentChatItems}/>);
+        render(
+            <MemoryRouter initialEntries={['/chatroom/0']}>
+                <Routes>
+                    <Route path='/chatroom/:id' element={<ChatRoomSideBar userName={'testName'} items={recentChatItems}/>}/>
+                </Routes>
+            </MemoryRouter>
+        );
         const btn = screen.getByText('test title 1');
         expect(btn).toBeInTheDocument();
     })
