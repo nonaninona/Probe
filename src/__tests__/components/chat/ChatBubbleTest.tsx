@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-// import C from '../../../components/chat/LastChatBox';
+import ChatBubble from '../../../components/chat/ChatBubble';
 
 describe('ChatBubble render', () => {
     it('내용이 잘 그려지는가?', () => {
