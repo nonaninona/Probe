@@ -9,9 +9,23 @@ import { useEffect, useReducer, useState } from "react"
 interface ChatRoomProps {
     id: string
 }
-
 export function ChatRoom({ id }: ChatRoomProps) {
-    const chatRoomId = Number(useParams().chatRoomId);
+    const chatRoomId = useParams().chatRoomId!;
+    const ws = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage');
+
+    // ws.onopen = () => {
+    //     console.log('WebSocket 연결 성공');
+    //   };
+ 
+    // const sendMessage = () => {
+    //     const message = {
+    //         chatRoomId : chatRoomId,
+    //         username : "id",
+    //         message : "123"
+    //     }
+    //     ws.send(JSON.stringify(message))
+    //   };
+
     const [chatRooms, setChatRooms] = useState(
         [
             {
@@ -74,7 +88,7 @@ export function ChatRoom({ id }: ChatRoomProps) {
     }
 
     return (
-        <div className={styles['chat-room']}>
+        <div  className={styles['chat-room']}>
             <ChatRoomSideBar userName={id} items={chatRooms} />
             <div className={styles['right-column']}>
                 <div className={styles['chat-list']}>
