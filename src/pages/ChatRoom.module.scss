@@ -1,0 +1,26 @@
+.chat-room {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    height: 100vh;
+}
+
+.right-column {
+    width: auto;
+    height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-list {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+
+}
+
+.prompt {
+    margin : 30px;
+}

@@ -4,6 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import { HomePage, ChatPage, ArticlePage, MapPage } from './pages/index'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
+import { ChatRoom } from './pages/ChatRoom'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/map" element ={ <MapPage/> }/>
       <Route path="/login" element ={ <LoginPage/> }/>
       <Route path="/signup" element ={ <SignUpPage/> }/>
+      <Route path="/chatroom/:chatRoomId" element ={ <ChatRoom id='ihh0529'/> }/>
     </Routes>
   )
 }
