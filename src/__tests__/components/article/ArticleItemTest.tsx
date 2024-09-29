@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ArticleItem from '../../components/ArticleItem';
+import ArticleItem from '../../../components/article/ArticleItem';
 
 describe('ArticleItem render', () => {
     it('제목이 잘 그려지는가?', () => {

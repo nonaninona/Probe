@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import RecommendArticleList from '../../components/RecommendArticleList';
+import RecommendArticleList from '../../../components/article/RecommendArticleList';
 
 const articleItems = [
     {
