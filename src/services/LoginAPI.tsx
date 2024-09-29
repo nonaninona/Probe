@@ -1,15 +1,14 @@
 export async function callLoginAPI({id, password} : {id: string, password: string}) {
-    const request = new FormData();
-    request.append("username", id);
-    request.append("password", password);
-    console.log(import.meta.env.REACT_APP_SERVER_URL)
-    // console.log(process.env.REACT_APP_SERVER_URL)
+    const request = {
+        "username" : id,
+        "password" : password
+    }
     const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/login', {
         method : "POST",
         headers : {
-            "Content-Type" : "multipart/form-data"
+            "Content-Type" : "application/json"
         },
-        body : request
+        body : JSON.stringify(request)
     })
 
     if(response.ok) {
