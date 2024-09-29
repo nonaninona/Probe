@@ -3,36 +3,30 @@ import NavBar from "../components/NavBar"
 import { useState } from "react";
 import styles from './SignUpPage.module.scss';
 import SignUpForm from "../components/SignUpForm";
+import { callSignUpAPI } from "../services/SignUpAPI";
 
 export function SignUpPage() {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
 
-    const callSignUpAPI = (userName: string, id: string, password: string) => {
-        console.log(userName);
-        console.log(id);
-        console.log(password);
-        
-        const response = { ok : false }
-        if(userName == 'testName' && id == 'test@example.com' && password == 'password123')
-            response.ok = true;
-
-        return response
+    const handleSignUp = ({ userName, id, password }: { userName: string, id: string; password: string }) => {
+        const response = callSignUpAPI({ userName, id, password });
+        response
+            .then((data) => {
+                console.log(data)
+                setErrorMessage('')
+                navigate('/')
+            })
+            .catch((err) => {
+                console.log(err.message)
+                setErrorMessage('이름, 아이디 혹은 비밀번호가 올바르지 않습니다')
+            })
     }
-
-    const handleSignUp = ({userName, id, password} : { userName: string, id: string; password: string }) => {
-        const response = callSignUpAPI(userName, id, password);
-        if(response.ok) {
-            setErrorMessage('')
-            navigate('/')
-        }
-        setErrorMessage('이름, 아이디 혹은 비밀번호가 올바르지 않습니다')
-    }
-    return ( 
+    return (
         <div className={styles['sign-up-page']}>
             <NavBar />
             <div className={styles['sign-up-form-wrapper']}>
-                <SignUpForm onSignUp={handleSignUp} errorMessage={errorMessage}/>
+                <SignUpForm onSignUp={handleSignUp} errorMessage={errorMessage} />
             </div>
         </div>
     )
