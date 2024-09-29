@@ -17,7 +17,7 @@ export default function SignUpForm(props : SignUpFormProps) {
 
     return (
         <div className={styles['login-form']}>
-            <div className={styles['title']}>회원가입</div>
+            <div className={styles['title']} data-testid='회원가입-제목'>회원가입</div>
             <div className={styles['item']}>
                 <div className={styles['item-title']}>이름</div>
                 <div className={styles['item-input']}>

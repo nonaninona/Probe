@@ -1,12 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import SignUpForm from '../../components/SignUpForm';
 
 describe('SignUpForm render', () => {
     it('제목이 잘 그려지는가?', () => {
         render(
             <SignUpForm errorMessage='' />
         );
-        const title = screen.getByText('회원가입');
+        const title = screen.getByTestId('회원가입-제목');
         expect(title).toBeInTheDocument();
     })
     it('form item 제목이 잘 그려지는가?', () => {
