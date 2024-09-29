@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import LastChatList from '../../components/ChatRoom/LastChatList';
+import LastChatList from '../../components/chat/LastChatList';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 const dummyItems = [

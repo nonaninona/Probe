@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import ChatbotPrompt from "../components/ChatbotPrompt"
-import LastChatList from "../components/ChatRoom/LastChatList"
+import LastChatList from "../components/chat/LastChatList"
 import NavBar from "../components/NavBar"
 import styles from "./ChatPage.module.scss"
 
