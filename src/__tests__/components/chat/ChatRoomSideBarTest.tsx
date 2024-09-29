@@ -3,15 +3,19 @@ import '@testing-library/jest-dom';
 
 const recentChatItems = [
     {
+        chatRoomId : 1,
         title : 'test title 1'
     },
     {
+        chatRoomId : 2,
         title : 'test title 2'
     },
     {
+        chatRoomId : 3,
         title : 'test title 3'
     },
     {
+        chatRoomId : 4,
         title : 'test title 4'
     }
 ]
