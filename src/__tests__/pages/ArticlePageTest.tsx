@@ -16,7 +16,7 @@ describe('ArticlePage 위치 이동 기능 테스트', () => {
             </MemoryRouter>
         );
 
-        const titleText = screen.getByText('test title 1');
+        const titleText = screen.getByText('test title1');
         
         //when
         fireEvent.click(titleText)
