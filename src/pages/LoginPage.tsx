@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import LoginForm from "../components/LoginForm"
+import LoginForm from "../components/login/LoginForm"
 import NavBar from "../components/NavBar"
 import { useState } from "react";
 import styles from './LoginPage.module.scss';
