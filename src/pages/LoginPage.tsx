@@ -14,7 +14,9 @@ export function LoginPage() {
         response
             .then((data) => { 
                 localStorage.setItem("JWT", data.jwt) 
+                localStorage.setItem("id", id) 
                 console.log(localStorage.getItem("JWT"))
+                console.log(localStorage.getItem("id"))
                 navigate('/')
             })
             .catch((err) => { 
