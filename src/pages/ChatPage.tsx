@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar"
 import styles from "./ChatPage.module.scss"
 import { useEffect, useState } from "react"
 import { callGetChatRoomListAPI } from "../services/ChatAPI"
+import { callMakeChatRoomAPI } from "../services/ChatAPI"
 
 export function ChatPage() {
 
@@ -13,32 +14,6 @@ export function ChatPage() {
     const [chatRooms, setChatRooms] = useState([]);
 
     const id = localStorage.getItem('id')
-
-    const dummyItems = [
-        {
-            chatRoomId: 1,
-            title: "test title 1",
-            date: "1 days ago"
-        },
-
-        {
-            chatRoomId: 2,
-            title: "test title 2",
-            date: "2 days ago"
-        },
-
-        {
-            chatRoomId: 3,
-            title: "test title 3",
-            date: "3 days ago"
-        },
-
-        {
-            chatRoomId: 4,
-            title: "test title 4",
-            date: "4 days ago"
-        }
-    ]
 
     useEffect(() => {
         console.log(id)
@@ -57,9 +32,19 @@ export function ChatPage() {
     }, [])
 
     const handleQuery = (query: string) => {
-        navigate("/newchat")
+        if(id == null)
+            return
+
+        const response = callMakeChatRoomAPI({ username : id!, title : "test title"})
+        response    
+            .then((data) => {
+                console.log(data)
+                navigate('/chatroom/' + data.chatRoomId)
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
         console.log(query);
-        //새로운 채팅방 + 그 화면으로 이동 + 쿼리 던지고 받기
     }
 
     return (
