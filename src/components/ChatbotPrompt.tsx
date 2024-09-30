@@ -19,8 +19,6 @@ export default function ChatbotPrompt({ onQuery }: ChatbotPromptProps) {
             isDisable = true
         else
             isDisable = false
-        console.log(value)
-        console.log(isDisable)
     }
 
     return (
