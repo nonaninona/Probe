@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NavBar from '../../../components/NavBar';
 import { Routes, Route, MemoryRouter } from 'react-router-dom';
 import { HomePage, ChatPage, ArticlePage } from '../../../pages';
 import { LoginPage } from '../../../pages/LoginPage';

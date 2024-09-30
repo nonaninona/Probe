@@ -5,10 +5,6 @@ import styles from './ArticlePage.module.scss';
 
 export function ArticlePage() {
 
-    const callGetAPI = () => {
-
-    }
-
     const dummyItems = [
         {
             articleId : 1,

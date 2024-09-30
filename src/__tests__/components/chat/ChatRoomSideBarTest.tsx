@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ChatRoomSideBar from '../../../components/chat/ChatRoomSideBar';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';

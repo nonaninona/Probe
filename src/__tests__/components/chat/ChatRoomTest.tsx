@@ -2,13 +2,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 // import ChatRoomSideBar from '../../../components/chat/ChatRoomSideBar';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { ChatRoom } from '../../../pages/ChatRoom';
 
 describe('ChatRoom render', () => {
     it('버튼이 잘 그려지는가?', () => {
         render(
             <MemoryRouter initialEntries={['/chatroom/0']}>
                 <Routes>
-                    <Route path='/chatroom/:id' element={<ChatRoom userName={'testName'}/>}/>
+                    <Route path='/chatroom/:id' element={<ChatRoom id={'testName'}/>}/>
                 </Routes>
             </MemoryRouter>
         );
@@ -19,7 +20,7 @@ describe('ChatRoom render', () => {
         render(
             <MemoryRouter initialEntries={['/chatroom/0']}>
                 <Routes>
-                    <Route path='/chatroom/:id' element={<ChatRoom userName={'testName'}/>}/>
+                    <Route path='/chatroom/:id' element={<ChatRoom id={'testName'}/>}/>
                 </Routes>
             </MemoryRouter>
         );
@@ -30,7 +31,7 @@ describe('ChatRoom render', () => {
         render(
             <MemoryRouter initialEntries={['/chatroom/0']}>
                 <Routes>
-                    <Route path='/chatroom/:id' element={<ChatRoom userName={'testName'}/>}/>
+                    <Route path='/chatroom/:id' element={<ChatRoom id={'testName'}/>}/>
                 </Routes>
             </MemoryRouter>
         );
@@ -44,7 +45,7 @@ describe('ChatRoom 화면 전환 기능 테스트', () => {
         render(
             <MemoryRouter initialEntries={['/chatroom/0']}>
                 <Routes>
-                    <Route path='/chatroom/0' element={<ChatRoom userName={'testName'}/>}/>
+                    <Route path='/chatroom/0' element={<ChatRoom id={'testName'}/>}/>
                     <Route path='/chatroom/1' element={<div>1번 채팅방</div>}/>
                 </Routes>
             </MemoryRouter>
@@ -59,14 +60,14 @@ describe('ChatRoom 채팅 기능 테스트', () => {
         render(
             <MemoryRouter initialEntries={['/chatroom/0']}>
                 <Routes>
-                    <Route path='/chatroom/:id' element={<ChatRoom userName={'testName'}/>}/>
+                    <Route path='/chatroom/:id' element={<ChatRoom id={'testName'}/>}/>
                     <Route path='/chatroom/1' element={<div>1번 채팅방</div>}/>
                 </Routes>
             </MemoryRouter>
         );
 
         const prompt = screen.getByAltText('프로비에게 부동산 물어보기 ex) 정비사업 종류에는 뭐가 있어?')
-        const btn = screen.getByRole('button')
+        // const btn = screen.getByRole('button')
         
         fireEvent.change(prompt, { target : { value : 'asf' } })
 

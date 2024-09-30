@@ -4,7 +4,7 @@ import ChatRoomSideBar from "../components/chat/ChatRoomSideBar"
 import ChatbotPrompt from "../components/ChatbotPrompt"
 import { callGetChatListAPI, callGetChatRoomListAPI } from "../services/ChatAPI"
 import styles from "./ChatRoom.module.scss"
-import { useEffect, useReducer, useState } from "react"
+import { useEffect, useState } from "react"
 
 interface ChatRoomProps {
     id: string
@@ -17,8 +17,7 @@ interface SocketMessage {
 }
 
 export function ChatRoom({ id }: ChatRoomProps) {
-    const chatRoomIdParam = useParams().chatRoomId!;
-    const [chatRoomId, setChatRoomId] = useState(chatRoomIdParam);
+    const chatRoomId = useParams().chatRoomId!;
     const ws = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage');
 
     ws.onopen = () => {
