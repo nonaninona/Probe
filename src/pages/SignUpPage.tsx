@@ -14,6 +14,9 @@ export function SignUpPage() {
         response
             .then((data) => {
                 console.log(data)
+                if(!data.isSuccess) {
+                    throw Error("회원가입 실패")
+                }
                 setErrorMessage('')
                 navigate('/')
             })
