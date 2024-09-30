@@ -1,3 +1,4 @@
+import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 import RecommendArticleList from '../components/article/RecommendArticleList';
 import styles from './ArticlePage.module.scss';
@@ -36,6 +37,7 @@ export function ArticlePage() {
         <div className={styles['article-page']}>
             <NavBar />
             <RecommendArticleList items={dummyItems}/>
+            <Footer/>
         </div>
     )
 }
