@@ -96,6 +96,13 @@ export function ChatRoom({ id }: ChatRoomProps) {
 
     useEffect(() => {
         callGetChatListAPI({ chatRoomId })
+        .then((data) => {
+            console.log(data)
+            setChats(data.chats)
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
     }, [])
 
     // useEffect(() => {

@@ -21,7 +21,7 @@ export async function callGetChatRoomListAPI({id}: {id: string}) {
     return response.json();
 }
 
-export async function callGetChatListAPI({chatRoomId}: {chatRoomId: number}) {
+export async function callGetChatListAPI({chatRoomId}: {chatRoomId: string}) {
     const JWT = localStorage.getItem("JWT")
 
     const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/chat/getAllChatsFromChatRoom/' + chatRoomId, {
