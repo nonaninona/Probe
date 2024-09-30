@@ -17,7 +17,10 @@ export function LoginPage() {
                 console.log(localStorage.getItem("JWT"))
                 navigate('/')
             })
-            .catch((err) => { console.log(err.message) })
+            .catch((err) => { 
+                console.log(err.message) 
+                setErrorMessage('아이디 혹은 비밀번호가 올바르지 않습니다')
+            })
     }
 
     return (
