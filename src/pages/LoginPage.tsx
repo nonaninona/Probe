@@ -15,6 +15,7 @@ export function LoginPage() {
             .then((data) => { 
                 localStorage.setItem("JWT", data.jwt) 
                 console.log(localStorage.getItem("JWT"))
+                navigate('/')
             })
             .catch((err) => { console.log(err.message) })
     }
