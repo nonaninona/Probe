@@ -6,14 +6,27 @@ import HomePageUI1 from "../components/homePage/HomePageUI1";
 import MainPageUI2 from "../components/homePage/HomePageUI2";
 import NavBar from "../components/NavBar";
 import styles from "./HomePage.module.scss"
+import { callMakeChatRoomAPI } from "../services/ChatAPI";
 
 export function HomePage() {
     const navigate = useNavigate();
 
+    const id = localStorage.getItem('id')
+
     const handleQuery = (query: string) => {
-        navigate("/chat")
+        if(id == null)
+            navigate('/login')
+
+        const response = callMakeChatRoomAPI({ username : id!, title : "test title"})
+        response    
+            .then((data) => {
+                console.log(data)
+                navigate('/chatroom/' + data.chatRoomId)
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
         console.log(query);
-        //새로운 채팅방 + 그 화면으로 이동 + 쿼리 던지고 받기
     }
 
     return (
