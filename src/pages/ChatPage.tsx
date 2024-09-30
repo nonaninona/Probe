@@ -3,12 +3,14 @@ import ChatbotPrompt from "../components/ChatbotPrompt"
 import LastChatList from "../components/chat/LastChatList"
 import NavBar from "../components/NavBar"
 import styles from "./ChatPage.module.scss"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { callGetChatRoomListAPI } from "../services/ChatAPI"
 
 export function ChatPage() {
 
     const navigate = useNavigate();
+
+    const [chatRooms, setChatRooms] = useState([]);
 
     const id = localStorage.getItem('id')
 
@@ -47,6 +49,7 @@ export function ChatPage() {
         callGetChatRoomListAPI({ id: id! })
             .then((data) => {
                 console.log(data)
+                setChatRooms(data.chatRooms.slice(0, 6))
             })
             .catch((err) => {
                 console.log(err)
@@ -66,7 +69,7 @@ export function ChatPage() {
                 <div className={styles['notice']}>프로비에게 질문하기</div>
                 <ChatbotPrompt onQuery={handleQuery} />
             </div>
-            <LastChatList items={dummyItems} />
+            <LastChatList items={chatRooms} />
         </div>
     )
 }
