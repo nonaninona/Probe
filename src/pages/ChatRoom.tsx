@@ -5,10 +5,7 @@ import ChatbotPrompt from "../components/ChatbotPrompt"
 import { callGetChatListAPI, callGetChatRoomListAPI } from "../services/ChatAPI"
 import styles from "./ChatRoom.module.scss"
 import { useEffect, useState } from "react"
-
-interface ChatRoomProps {
-    id: string
-}
+import { useRef } from "react"
 
 interface SocketMessage {
     chatRoomId: string,
@@ -16,23 +13,19 @@ interface SocketMessage {
     message: string
 }
 
-export function ChatRoom({ id }: ChatRoomProps) {
-    const chatRoomId = useParams().chatRoomId!;
-    const ws = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage');
+interface Chat {
+    id : string,
+    memberId : string,
+    chatRoomId : string,
+    role : string,
+    message : string,
+    date : string
+}
 
-    ws.onopen = () => {
-        console.log('WebSocket 연결 성공');
-    };
-
-    ws.onmessage = (event) => {
-        console.log('서버로부터 메시지:', event.data);
-        setChats((chats) => [...chats, { side: 'probee', content: event.data }]);
-    };
-
-    const sendMessage = (message: SocketMessage) => {
-        ws.send(JSON.stringify(message))    
-    };
-
+export function ChatRoom() {
+    const id = localStorage.getItem('id')
+    const chatRoomParam = useParams().chatRoomId!;
+    const [chatRoomId, setChatRoomId] = useState(chatRoomParam)
     const [chatRooms, setChatRooms] = useState(
         [
             {
@@ -49,42 +42,67 @@ export function ChatRoom({ id }: ChatRoomProps) {
             }
         ]
     )
+    let ws = useRef<WebSocket | null>(null)
+    const JWT = localStorage.getItem("JWT")
+    useEffect(() => {
+        if(ws.current) {
+            ws.current.close()
+        }
+        const socket = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage?token=' + JWT);
+        ws.current = socket;
+        socket.onopen = () => {
+            console.log('소켓 접속 성공')
+        };
+        socket.onmessage = (event) => {
+            setChats((chats) => [...chats, { side: 'probee', content: event.data }]);
+        };
+        socket.onclose = () => {
+            console.log('소켓 연결 해제')
+        }
+    }, [chatRoomId])
+    const sendMessage = (message: SocketMessage) => {
+        if(ws.current)
+            ws.current.send(JSON.stringify(message))
+    };
 
     useEffect(() => {
-        callGetChatRoomListAPI({id})
+        callGetChatRoomListAPI({ id : id! })
             .then((data) => {
-                console.log(data)
                 setChatRooms(data.chatRooms)
             })
             .catch((err) => {
                 console.log(err.message)
             })
-    }, [])
-
+    }, [chatRoomId])
     useEffect(() => {
         callGetChatListAPI({ chatRoomId })
-        .then((data) => {
-            console.log(data)
-            setChats(data.chats)
-        })
-        .catch((err) => {
-            console.log(err.message)
-        })
-    }, [])
+            .then((data) => {
+                setChats(data.chats.map((chat: Chat) => {
+                    return { side : (chat.role == 'user' ? 'user' : 'probee'),  content : chat.message}
+                }))
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }, [chatRoomId])
 
-    const handleQuery = (query:string) => {
+
+    const handleQuery = (query: string) => {
         const msg = {
             chatRoomId: chatRoomId,
-            username: id,
+            username: id || '',
             message: query
         }
         sendMessage(msg)
         setChats((chats) => [...chats, { side: 'user', content: msg.message }])
     }
+    const handleClick = (chatRoomId : string) => {
+        setChatRoomId(chatRoomId)
+    }
 
     return (
         <div className={styles['chat-room']}>
-            <ChatRoomSideBar userName={id} items={chatRooms} />
+            <ChatRoomSideBar onClick={handleClick} userName={id!} items={chatRooms} />
             <div className={styles['right-column']}>
                 <div className={styles['chat-list']}>
                     <ChatList items={chats} />

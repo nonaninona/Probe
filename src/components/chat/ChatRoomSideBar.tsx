@@ -5,14 +5,16 @@ import RecentChatItem, { RecentChatItemProps } from './RecentChatItem'
 import { callMakeChatRoomAPI } from '../../services/ChatAPI'
 
 export interface ChatRoomSideBarProps {
+    onClick?: Function,
     userName: string,
     items: RecentChatItemProps[]
 }
 
-export default function ChatRoomSideBar({ userName, items }: ChatRoomSideBarProps) {
+export default function ChatRoomSideBar({ onClick, userName, items }: ChatRoomSideBarProps) {
     const navigate = useNavigate();
 
     const handleClick = (chatRoomId: number) => {
+        onClick!(chatRoomId)
         navigate('/chatroom/' + chatRoomId)
     }
 
@@ -21,6 +23,7 @@ export default function ChatRoomSideBar({ userName, items }: ChatRoomSideBarProp
         response    
             .then((data) => {
                 console.log(data)
+                onClick!(data.chatRoomId)
                 navigate('/chatroom/' + data.chatRoomId)
             })
             .catch((err) => {
