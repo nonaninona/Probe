@@ -6,6 +6,7 @@ import styles from "./ChatPage.module.scss"
 import { useEffect, useState } from "react"
 import { callGetChatRoomListAPI } from "../services/ChatAPI"
 import { callMakeChatRoomAPI } from "../services/ChatAPI"
+import Footer from "../components/Footer"
 
 export function ChatPage() {
 
@@ -55,6 +56,7 @@ export function ChatPage() {
                 <ChatbotPrompt onQuery={handleQuery} />
             </div>
             <LastChatList items={chatRooms} />
+            <Footer />
         </div>
     )
 }
