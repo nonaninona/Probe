@@ -13,7 +13,7 @@ export async function callGetChatRoomListAPI({id}: {id: string}) {
         body : JSON.stringify(request)
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
@@ -31,7 +31,7 @@ export async function callGetChatListAPI({chatRoomId}: {chatRoomId: string}) {
         }
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
