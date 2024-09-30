@@ -10,8 +10,30 @@ interface ChatRoomProps {
     id: string
 }
 
+interface SocketMessage {
+    chatRoomId: string,
+    username: string,
+    message: string
+}
+
 export function ChatRoom({ id }: ChatRoomProps) {
-    const chatRoomId = Number(useParams().chatRoomId);
+    const chatRoomIdParam = useParams().chatRoomId!;
+    const [chatRoomId, setChatRoomId] = useState(chatRoomIdParam);
+    const ws = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage');
+
+    ws.onopen = () => {
+        console.log('WebSocket 연결 성공');
+    };
+
+    ws.onmessage = (event) => {
+        console.log('서버로부터 메시지:', event.data);
+        setChats((chats) => [...chats, { side: 'probee', content: event.data }]);
+    };
+
+    const sendMessage = (message: SocketMessage) => {
+        ws.send(JSON.stringify(message))    
+    };
+
     const [chatRooms, setChatRooms] = useState(
         [
             {
@@ -62,19 +84,21 @@ export function ChatRoom({ id }: ChatRoomProps) {
     )
 
     useEffect(() => {
-        callGetChatRoomListAPI({id})
-    }, [])
+        callGetChatRoomListAPI({ id })
+    }, [chatRoomId])
 
     useEffect(() => {
         callGetChatListAPI({ chatRoomId })
-    }, [])
+    }, [chatRoomId])
 
-    // useEffect(() => {
-    //     call
-    // })
-
-    const handleQuery = () => {
-        //소켓으로 메시지 보내기
+    const handleQuery = (query:string) => {
+        const msg = {
+            chatRoomId: chatRoomId,
+            username: id,
+            message: query
+        }
+        sendMessage(msg)
+        setChats((chats) => [...chats, { side: 'user', content: msg.message }])
     }
 
     return (
@@ -82,10 +106,10 @@ export function ChatRoom({ id }: ChatRoomProps) {
             <ChatRoomSideBar userName={id} items={chatRooms} />
             <div className={styles['right-column']}>
                 <div className={styles['chat-list']}>
-                <ChatList items={chats} />
+                    <ChatList items={chats} />
                 </div>
                 <div className={styles['prompt']}>
-                <ChatbotPrompt onQuery={handleQuery} />
+                    <ChatbotPrompt onQuery={handleQuery} />
                 </div>
             </div>
         </div>
