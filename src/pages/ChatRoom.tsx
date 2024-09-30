@@ -39,18 +39,6 @@ export function ChatRoom({ id }: ChatRoomProps) {
             {
                 chatRoomId: 1,
                 title: 'test title 1'
-            },
-            {
-                chatRoomId: 2,
-                title: 'test title 2'
-            },
-            {
-                chatRoomId: 3,
-                title: 'test title 3'
-            },
-            {
-                chatRoomId: 4,
-                title: 'test title 4'
             }
         ]
     )
@@ -58,27 +46,7 @@ export function ChatRoom({ id }: ChatRoomProps) {
         [
             {
                 side: 'user',
-                content: '123123'
-            },
-            {
-                side: 'probee',
-                content: '123123'
-            },
-            {
-                side: 'user',
-                content: '123123123'
-            },
-            {
-                side: 'probee',
-                content: '123123'
-            },
-            {
-                side: 'user',
-                content: '123123'
-            },
-            {
-                side: 'probee',
-                content: '123123'
+                content: 'test title 1'
             }
         ]
     )
@@ -104,10 +72,6 @@ export function ChatRoom({ id }: ChatRoomProps) {
             console.log(err.message)
         })
     }, [])
-
-    // useEffect(() => {
-    //     call
-    // })
 
     const handleQuery = (query:string) => {
         const msg = {
