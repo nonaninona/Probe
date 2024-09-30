@@ -13,7 +13,7 @@ export default function ChatRoomSideBar({ userName, items }: ChatRoomSideBarProp
     const navigate = useNavigate();
 
     const handleClick = (chatRoomId: number) => {
-        navigate('/chat/' + chatRoomId)
+        navigate('/chatroom/' + chatRoomId)
     }
 
     const handleNewChatClick = () => {

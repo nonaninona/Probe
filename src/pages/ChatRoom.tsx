@@ -84,12 +84,30 @@ export function ChatRoom({ id }: ChatRoomProps) {
     )
 
     useEffect(() => {
-        callGetChatRoomListAPI({ id })
-    }, [chatRoomId])
+        callGetChatRoomListAPI({id})
+            .then((data) => {
+                console.log(data)
+                setChatRooms(data.chatRooms)
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }, [])
 
     useEffect(() => {
         callGetChatListAPI({ chatRoomId })
-    }, [chatRoomId])
+        .then((data) => {
+            console.log(data)
+            setChats(data.chats)
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+    }, [])
+
+    // useEffect(() => {
+    //     call
+    // })
 
     const handleQuery = (query:string) => {
         const msg = {

@@ -1,10 +1,10 @@
 export async function callGetChatRoomListAPI({id}: {id: string}) {
-    const JWT = localStorage.getItem("JWT")
-
     const request = {
         "username" : id,
     }
-    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/member/getAllChatRoomsResponse', {
+    const JWT = localStorage.getItem("JWT");
+
+    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/member/getAllChatRoomsResponse', { 
         method : "POST",
         headers : {
             "Content-Type" : "application/json",
@@ -13,7 +13,7 @@ export async function callGetChatRoomListAPI({id}: {id: string}) {
         body : JSON.stringify(request)
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
@@ -31,7 +31,7 @@ export async function callGetChatListAPI({chatRoomId}: {chatRoomId: string}) {
         }
     })
 
-    if(response.ok) {
+    if(!response.ok) {
         const errMsg = await response.json();
         return new Error(errMsg || 'failed to fetch data')
     }
