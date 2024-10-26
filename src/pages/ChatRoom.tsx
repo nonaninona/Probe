@@ -6,6 +6,7 @@ import { callGetChatListAPI, callGetChatRoomListAPI } from "../services/ChatAPI"
 import styles from "./ChatRoom.module.scss"
 import { useEffect, useState } from "react"
 import { useRef } from "react"
+import { useLocation } from "react-router-dom"
 
 interface SocketMessage {
     chatRoomId: string,
@@ -14,17 +15,18 @@ interface SocketMessage {
 }
 
 interface Chat {
-    id : string,
-    memberId : string,
-    chatRoomId : string,
-    role : string,
-    message : string,
-    date : string
+    id: string,
+    memberId: string,
+    chatRoomId: string,
+    role: string,
+    message: string,
+    date: string
 }
 
 export function ChatRoom() {
     const id = localStorage.getItem('id')
     const chatRoomParam = useParams().chatRoomId!;
+    const location = useLocation();
     const [chatRoomId, setChatRoomId] = useState(chatRoomParam)
     const [chatRooms, setChatRooms] = useState(
         [
@@ -45,28 +47,35 @@ export function ChatRoom() {
     let ws = useRef<WebSocket | null>(null)
     const JWT = localStorage.getItem("JWT")
     useEffect(() => {
-        if(ws.current) {
-            ws.current.close()
-        }
         const socket = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage?token=' + JWT);
         ws.current = socket;
         socket.onopen = () => {
-            console.log('소켓 접속 성공')
+            console.log(chatRoomId + '소켓 접속 성공')
+            if (location.state.initialQuery != '') {
+                location.state.initialQuery != ''
+                handleQuery(location.state.initialQuery)
+            }
         };
         socket.onmessage = (event) => {
             setChats((chats) => [...chats, { side: 'probee', content: event.data }]);
         };
         socket.onclose = () => {
-            console.log('소켓 연결 해제')
+            console.log(chatRoomId + '소켓 연결 해제')
         }
-    }, [chatRoomId])
+
+        return () => {
+	        socket.close()
+        }
+
+    }, [])
     const sendMessage = (message: SocketMessage) => {
-        if(ws.current)
+        if (ws.current)
             ws.current.send(JSON.stringify(message))
+
     };
 
     useEffect(() => {
-        callGetChatRoomListAPI({ id : id! })
+        callGetChatRoomListAPI({ id: id! })
             .then((data) => {
                 setChatRooms(data.chatRooms)
             })
@@ -78,7 +87,7 @@ export function ChatRoom() {
         callGetChatListAPI({ chatRoomId })
             .then((data) => {
                 setChats(data.chats.map((chat: Chat) => {
-                    return { side : (chat.role == 'user' ? 'user' : 'probee'),  content : chat.message}
+                    return { side: (chat.role == 'user' ? 'user' : 'probee'), content: chat.message }
                 }))
             })
             .catch((err) => {
@@ -96,7 +105,7 @@ export function ChatRoom() {
         sendMessage(msg)
         setChats((chats) => [...chats, { side: 'user', content: msg.message }])
     }
-    const handleClick = (chatRoomId : string) => {
+    const handleClick = (chatRoomId: string) => {
         setChatRoomId(chatRoomId)
     }
 

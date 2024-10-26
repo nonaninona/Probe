@@ -40,7 +40,7 @@ export function ChatPage() {
         response    
             .then((data) => {
                 console.log(data)
-                navigate('/chatroom/' + data.chatRoomId)
+                navigate('/chatroom/' + data.chatRoomId, { state: { initialQuery : query } })
             })
             .catch((err) => {
                 console.log(err.message)
