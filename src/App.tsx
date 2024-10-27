@@ -4,6 +4,7 @@ import { HomePage, ChatPage, ArticlePage, MapPage } from './pages/index'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
 import { ChatRoom } from './pages/ChatRoom'
+import { ArticleDetail } from './pages/ArticleDetail'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/login" element ={ <LoginPage/> }/>
       <Route path="/signup" element ={ <SignUpPage/> }/>
       <Route path="/chatroom/:chatRoomId" element ={ <ChatRoom /> }/>
+      <Route path="/article/:articleId" element ={ <ArticleDetail /> }/>
     </Routes>
   )
 }

@@ -27,7 +27,7 @@ export default function RecommendArticleList(props: RecommendArticleListProps) {
                     {
                         props.items.map((item) => {
                             return <div key={item.articleId} className={styles['article-item']}>
-                                <ArticleItem articleId={item.articleId} onClick={handleArticleItemClick} width={item.width} height={item.height} title={item.title} body={item.body} />
+                                <ArticleItem articleId={item.articleId} onClick={handleArticleItemClick} width={item.width} height={item.height} title={item.title} body={item.body} url={item.url} />
                             </div>
                         })
                     }
