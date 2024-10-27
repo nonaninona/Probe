@@ -19,7 +19,7 @@ export default function ChatRoomSideBar({ onClick, userName, items }: ChatRoomSi
     }
 
     const handleNewChatClick = () => {
-        const response = callMakeChatRoomAPI({ username : userName, title : "test title"})
+        const response = callMakeChatRoomAPI({ username : userName, title : Date.now().toString()})
         response    
             .then((data) => {
                 console.log(data)

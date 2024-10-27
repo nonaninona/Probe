@@ -36,7 +36,7 @@ export function ChatPage() {
         if(id == null)
             return
 
-        const response = callMakeChatRoomAPI({ username : id!, title : "test title"})
+        const response = callMakeChatRoomAPI({ username : id!, title : Date.now().toString()})
         response    
             .then((data) => {
                 console.log(data)

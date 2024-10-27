@@ -7,6 +7,7 @@ import styles from "./ChatRoom.module.scss"
 import { useEffect, useState } from "react"
 import { useRef } from "react"
 import { useLocation } from "react-router-dom"
+import { ChatBubbleProps } from "../components/chat/ChatBubble"
 
 interface SocketMessage {
     chatRoomId: string,
@@ -27,52 +28,42 @@ export function ChatRoom() {
     const id = localStorage.getItem('id')
     const chatRoomParam = useParams().chatRoomId!;
     const location = useLocation();
-    const [chatRoomId, setChatRoomId] = useState(chatRoomParam)
-    const [chatRooms, setChatRooms] = useState(
-        [
-            {
-                chatRoomId: 1,
-                title: 'test title 1'
-            }
-        ]
-    )
-    const [chats, setChats] = useState(
-        [
-            {
-                side: 'user',
-                content: 'test title 1'
-            }
-        ]
-    )
-    let ws = useRef<WebSocket | null>(null)
     const JWT = localStorage.getItem("JWT")
+    const [chatRoomId, setChatRoomId] = useState(chatRoomParam)
+    const [chatRooms, setChatRooms] = useState([])
+    const [chats, setChats] = useState<ChatBubbleProps[]>([])
+
+    let ws = useRef<WebSocket | null>(null)
     useEffect(() => {
         const socket = new WebSocket(import.meta.env.VITE_APP_WS_SERVER_URL + '/chat/sendMessage?token=' + JWT);
         ws.current = socket;
+
         socket.onopen = () => {
             console.log(chatRoomId + '소켓 접속 성공')
-            if (location.state.initialQuery != '') {
-                location.state.initialQuery != ''
+            console.log(location.state)
+            if (location.state != null && location.state.initialQuery != "") {
                 handleQuery(location.state.initialQuery)
+                location.state.initialQuery = ''
             }
         };
+
         socket.onmessage = (event) => {
             setChats((chats) => [...chats, { side: 'probee', content: event.data }]);
+            console.log("set in socket")
         };
-        socket.onclose = () => {
+
+        socket.onclose = (event) => {
             console.log(chatRoomId + '소켓 연결 해제')
+            console.log(event)
         }
 
         return () => {
-	        socket.close()
+            if(ws.current) {
+                ws.current.close();
+            }
         }
 
-    }, [])
-    const sendMessage = (message: SocketMessage) => {
-        if (ws.current)
-            ws.current.send(JSON.stringify(message))
-
-    };
+    }, [chatRoomId])
 
     useEffect(() => {
         callGetChatRoomListAPI({ id: id! })
@@ -83,18 +74,26 @@ export function ChatRoom() {
                 console.log(err.message)
             })
     }, [chatRoomId])
+    
     useEffect(() => {
+        if(location.state != null && location.state.initialQuery != "")
+            return
         callGetChatListAPI({ chatRoomId })
             .then((data) => {
                 setChats(data.chats.map((chat: Chat) => {
                     return { side: (chat.role == 'user' ? 'user' : 'probee'), content: chat.message }
                 }))
+                console.log("set in effect")
             })
             .catch((err) => {
                 console.log(err.message)
             })
     }, [chatRoomId])
 
+    const sendMessage = (message: SocketMessage) => {
+        if (ws.current)
+            ws.current.send(JSON.stringify(message))
+    };
 
     const handleQuery = (query: string) => {
         const msg = {
@@ -102,9 +101,12 @@ export function ChatRoom() {
             username: id || '',
             message: query
         }
+        console.log(msg)
         sendMessage(msg)
         setChats((chats) => [...chats, { side: 'user', content: msg.message }])
+        console.log("set in handlequery")
     }
+
     const handleClick = (chatRoomId: string) => {
         setChatRoomId(chatRoomId)
     }

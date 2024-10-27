@@ -19,7 +19,7 @@ export function HomePage() {
         if(id == null)
             navigate('/login')
 
-        const response = callMakeChatRoomAPI({ username : id!, title : "test title"})
+        const response = callMakeChatRoomAPI({ username : id!, title : Date.now().toString()})
         response    
             .then((data) => {
                 console.log(data)
