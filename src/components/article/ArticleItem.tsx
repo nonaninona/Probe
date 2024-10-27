@@ -6,6 +6,7 @@ export interface ArticleItemProps {
     height: number,
     title: string,
     body: string,
+    url: String,
     onClick? : Function
 }
 
