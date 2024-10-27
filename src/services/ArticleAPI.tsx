@@ -67,3 +67,26 @@ export async function callGetSimilarArticles({articleId} : {articleId:string}) {
 
     return response.json();
 }
+
+export async function callGetArticle({articleId} : {articleId:string}) {
+    const request = {
+        articleId : articleId
+    }
+
+    const JWT = localStorage.getItem("JWT");
+    const response = await fetch(import.meta.env.VITE_APP_SERVER_URL + '/article/getArticle', { 
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json",
+            "Authorization" : JWT!
+        },
+        body : JSON.stringify(request)
+    })
+
+    if(!response.ok) {
+        const errMsg = await response.json();
+        return new Error(errMsg || 'failed to fetch data')
+    }
+
+    return response.json();
+}
