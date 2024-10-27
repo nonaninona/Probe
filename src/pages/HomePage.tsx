@@ -9,11 +9,13 @@ import MainPageUI2 from "../components/homePage/HomePageUI2";
 import NavBar from "../components/NavBar";
 import styles from "./HomePage.module.scss"
 import { callMakeChatRoomAPI } from "../services/ChatAPI";
+import { useState } from "react";
 
 export function HomePage() {
     const navigate = useNavigate();
 
     const id = localStorage.getItem('id')
+    const [isLogin, setIsLogin] = useState(id!=null)
 
     const handleQuery = (query: string) => {
         if(id == null)
@@ -33,7 +35,7 @@ export function HomePage() {
 
     return (
         <div className={styles['home-page']}>
-            <NavBar />
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={''} />
             <div className={styles['first-ui']}>
                 <div className={styles['home-page-ui-0']}>
                     <HomePageUI0 />

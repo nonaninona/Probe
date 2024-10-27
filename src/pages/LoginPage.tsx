@@ -6,6 +6,9 @@ import styles from './LoginPage.module.scss';
 import { callLoginAPI } from "../services/LoginAPI";
 
 export function LoginPage() {
+    const id = localStorage.getItem('id')
+    const [isLogin, setIsLogin] = useState(id!=null)
+
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -27,7 +30,7 @@ export function LoginPage() {
 
     return (
         <div className={styles['login-page']}>
-            <NavBar />
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={''} />
             <div className={styles['login-form-wrapper']}>
                 <LoginForm onLogin={handleLogin} errorMessage={errorMessage} />
             </div>

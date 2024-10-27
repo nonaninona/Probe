@@ -15,6 +15,7 @@ export function ChatPage() {
     const [chatRooms, setChatRooms] = useState([]);
 
     const id = localStorage.getItem('id')
+    const [isLogin, setIsLogin] = useState(id != null)
 
     useEffect(() => {
         console.log(id)
@@ -33,14 +34,14 @@ export function ChatPage() {
     }, [])
 
     const handleQuery = (query: string) => {
-        if(id == null)
-            return
+        if (id == null)
+            navigate('/login')
 
-        const response = callMakeChatRoomAPI({ username : id!, title : Date.now().toString()})
-        response    
+        const response = callMakeChatRoomAPI({ username: id!, title: Date.now().toString() })
+        response
             .then((data) => {
                 console.log(data)
-                navigate('/chatroom/' + data.chatRoomId, { state: { initialQuery : query } })
+                navigate('/chatroom/' + data.chatRoomId, { state: { initialQuery: query } })
             })
             .catch((err) => {
                 console.log(err.message)
@@ -50,12 +51,19 @@ export function ChatPage() {
 
     return (
         <div className={styles['chat-page']}>
-            <NavBar />
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={'chat'} />
             <div className={styles['first-ui']}>
                 <div className={styles['notice']}>프로비에게 질문하기</div>
                 <ChatbotPrompt onQuery={handleQuery} />
             </div>
-            <LastChatList items={chatRooms} />
+            {isLogin ?
+                chatRooms.length != 0 ?
+                    <LastChatList items={chatRooms} /> 
+                    :
+                    <div></div>
+                :
+                <div/>
+            }
             <Footer />
         </div>
     )

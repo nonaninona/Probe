@@ -6,6 +6,9 @@ import SignUpForm from "../components/login/SignUpForm";
 import { callSignUpAPI } from "../services/SignUpAPI";
 
 export function SignUpPage() {
+    const id = localStorage.getItem('id')
+    const [isLogin, setIsLogin] = useState(id!=null)
+
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -27,7 +30,7 @@ export function SignUpPage() {
     }
     return (
         <div className={styles['sign-up-page']}>
-            <NavBar />
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={''} />
             <div className={styles['sign-up-form-wrapper']}>
                 <SignUpForm onSignUp={handleSignUp} errorMessage={errorMessage} />
             </div>
