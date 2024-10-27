@@ -7,6 +7,8 @@ import { callGetRecommendedArticles } from '../services/ArticleAPI'
 import { ArticleItemProps } from '../components/article/ArticleItem';
 
 export function ArticlePage() {
+    const id = localStorage.getItem('id')
+    const [isLogin, setIsLogin] = useState(id != null)
 
     const [recommendedArticles, setRecommendedArticles] = useState<ArticleItemProps[]>
         ([
@@ -59,8 +61,12 @@ export function ArticlePage() {
 
     return (
         <div className={styles['article-page']}>
-            <NavBar />
-            <RecommendArticleList items={recommendedArticles} />
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={'article'} />
+            {isLogin ?
+                <RecommendArticleList items={recommendedArticles} />
+                :
+                <div className={styles['non-login-page']}> 로그인 후 이용해주세요 </div>
+            }
             <Footer />
         </div>
     )

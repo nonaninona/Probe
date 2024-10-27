@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 
 export function ArticleDetail() {
     const userName = localStorage.getItem('id')!
+    const [isLogin, setIsLogin] = useState(userName!=null)
     const articleParam = useParams().articleId!;
     const [articleId, setArticleId] = useState(articleParam)
     const [title, setTitle] = useState('test title')
@@ -67,7 +68,7 @@ export function ArticleDetail() {
     return (
 
         <div className={styles['article-detail']}>
-            <NavBar/>
+            <NavBar isLogin={isLogin} setIsLogin={setIsLogin} page={'article'} />
             <div className={styles['article-content-wrapper']}>
                 <div className={styles['title']}>test title1</div>
                 <div className={styles['content']}>{content}</div>
